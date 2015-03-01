@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -21,6 +22,13 @@ class ViewController: UIViewController {
         } else {
             display.text = digit
             userIsInTheMiddleOfTypingANumber = true
+        }
+    }
+    
+    @IBAction func appendDot() {
+        let input = display.text!
+        if input.rangeOfString(".") == nil {
+            display.text = display.text! + "."
         }
     }
     
@@ -51,6 +59,9 @@ class ViewController: UIViewController {
         case "+": performOperation { $0 * $1 }
         case "−": performOperation { $1 - $0 }
         case "√": performOperation { sqrt($0)}
+        case "sin": performOperation { sin($1) }
+        case "cos": performOperation { cos($1) }
+        case "pi" : performOperation()
         default: break
         }
     }
@@ -70,5 +81,15 @@ class ViewController: UIViewController {
             enter()
         }
     }
+    
+    func performOperation(operation: ()) {
+        if operandStack.count >= 1 {
+            var foo = operandStack.last!
+            foo = M_PI
+            displayValue = foo
+            enter()
+        }
+    }
+
 }
 
